@@ -1,0 +1,182 @@
+:root {
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: black;
+  background-color: #333;
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* CARD LIST */
+
+.model {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2.5em;
+}
+
+@media only screen and (width < 520)
+{
+  .model{
+    grid-template-columns: repeat(auto-fill,minmax(130,1fr));
+  }
+}
+
+.modelCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  height: 185px;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  transition: 100ms;
+}
+
+.modelCard:hover {
+  transform: translateY(-1.3em);
+}
+
+/* CARD DETAILS */
+
+.card {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.card-details {
+  color: white;
+  background-color: #0c2046;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2em;
+}
+
+.card-title {
+  text-align: center;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.card-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.view-360-btn {
+  padding: 1em 2em;
+  border: none;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: lightgreen;
+  color: black;
+  font-size: 0.9em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.view-360-btn:hover {
+  background-color: #6ff36f;
+}
+
+.object-detail-image {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 450px;
+  height: 450px;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.detail-title {
+  margin-bottom: 0;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.detail-value {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+/* CARD PREVIEW */
+
+/* Modal açıldığında arka planı karartmak için modal-overlay kullanıyoruz */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Karartma için yarı saydam bir arka plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 100ms ease-in; /* 100ms açılış animasyonu */
+}
+
+/* Modal içeriğini ortalamak için modal-content kullanıyoruz */
+.modal-content {
+}
+
+/* Kapatma düğmesi için closeButton kullanıyoruz */
+.modal-content button {
+  display: block;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
