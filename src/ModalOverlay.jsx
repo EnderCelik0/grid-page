@@ -31,10 +31,10 @@ const ModalOverlay = ({ obj, wholeData, onClose, isOpen }) => {
               </button>
               <button className='btn btn-details'>More Details</button>
             </div>
+            <button className='btn btn-close' onClick={onClose}>
+              <GrClose className='close-icon' />
+            </button>
           </div>
-          <button className='btn btn-close' onClick={onClose}>
-            <GrClose className='close-icon' />
-          </button>
         </div>
       </div>
     </CSSTransition>
