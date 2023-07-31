@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Card } from './Card';
 import png from '../src/assets/folder-icon.png';
-import ModelOverlay from './ModalOverlay';
+import ModalOverlay from './ModalOverlay';
 
 function App() {
-  const [data, setData] = useState([]);
-  const [wholeData, setWholeData] = useState([]);
-  const [selectedObj, setSelectedObj] = useState(null);
-
+  const [data, setData] = useState();
+  const [modelData, setModelData] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  const [wholeData, setWholeData] = useState();
   useEffect(() => {
     fetch('http://localhost:3000/data')
       .then((res) => res.json())
@@ -17,45 +16,43 @@ function App() {
       });
   }, []);
 
-  const handleClick = (obj) => {
-    setData(obj);
-    setSelectedObj(true);
+  const openAndSetModal = (obj) => {
+    setModelData(obj);
+    setIsOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setSelectedObj(null);
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   const CardList = () => {
     return (
       <div className='model'>
-        {data.metadata &&
-          data.metadata.map((obj) => (
-            <div key={obj.objectId}>
-              <div
-                className='button modelCard'
-                onClick={() => handleClick(obj)}
-                key={obj.objectId}
-              >
-                <img className='card-img' src={png} alt='png' />
-              </div>
+        {data?.metadata?.map((obj) => (
+          <div key={obj.objectId}>
+            <div
+              className='button modelCard'
+              onClick={() => openAndSetModal(obj)}
+              key={obj.objectId}
+            >
+              <img className='card-img' src={png} alt='png' />
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     );
   };
 
   return (
     <div className='App'>
-      {selectedObj ? (
-        <ModelOverlay
-          openModal={selectedObj}
-          obj={data}
-          wholeData={wholeData}
-        />
-      ) : (
-        <CardList />
-      )}
+      {data && <CardList />}
+
+      <ModalOverlay
+        obj={modelData}
+        isOpen={isOpen}
+        onClose={closeModal}
+        wholeData={wholeData}
+      />
     </div>
   );
 }
