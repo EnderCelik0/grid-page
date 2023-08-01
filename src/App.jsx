@@ -8,6 +8,7 @@ export default function App() {
   const [modelData, setModelData] = useState();
   const [wholeData, setWholeData] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [isCardOpen, setIsCardOpen] = useState(false);
 
   useEffect(() => {
     fetch('https://jsonserver-uhor.onrender.com/data')
@@ -25,6 +26,11 @@ export default function App() {
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsCardOpen(false);
+  };
+
+  const handleCardClick = () => {
+    setIsCardOpen((prev) => !prev);
   };
 
   const CardList = () => {
@@ -52,8 +58,10 @@ export default function App() {
       <ModalOverlay
         obj={modelData}
         isOpen={isOpen}
-        onClose={closeModal}
+        closeModal={closeModal}
         wholeData={wholeData}
+        handleCardClick={handleCardClick}
+        isCardOpen={isCardOpen}
       />
     </div>
   );

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tb360View } from 'react-icons/tb';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
+import Card from './Card';
 
-const ModalOverlay = ({ obj, wholeData, onClose, isOpen }) => {
+const ModalOverlay = ({
+  obj,
+  wholeData,
+  closeModal,
+  isOpen,
+  isCardOpen,
+  handleCardClick,
+}) => {
   return (
     <CSSTransition
       in={isOpen}
@@ -11,7 +19,7 @@ const ModalOverlay = ({ obj, wholeData, onClose, isOpen }) => {
       classNames='modal'
       unmountOnExit={true}
     >
-      <div className='modal-overlay' onClick={onClose}>
+      <div className='modal-overlay' onClick={closeModal}>
         <div className='modal-content' onClick={(e) => e.stopPropagation()}>
           <div className='modal-card-img'>
             <p className='modal-card-title'>
@@ -29,12 +37,15 @@ const ModalOverlay = ({ obj, wholeData, onClose, isOpen }) => {
               <button className='btn btn-view-3d'>
                 <Tb360View className='icon' />
               </button>
-              <button className='btn btn-details'>More Details</button>
+              <button className='btn btn-details' onClick={handleCardClick}>
+                More Details
+              </button>
             </div>
-            <button className='btn btn-close' onClick={onClose}>
+            <button className='btn btn-close' onClick={closeModal}>
               <GrClose className='close-icon' />
             </button>
           </div>
+          <Card cardDetailData={obj} isCardOpen={isCardOpen} />
         </div>
       </div>
     </CSSTransition>

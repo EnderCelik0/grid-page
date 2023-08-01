@@ -65,17 +65,14 @@ img {
 /* CARD DETAILS */
 
 .card {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  margin-top: 1em;
+  height: max-content;
 }
 
 .card-details {
   color: white;
-  background-color: #0c2046;
   display: flex;
   flex-direction: column;
-  padding: 1.2em;
 }
 
 .card-title {
@@ -155,16 +152,19 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 0;
 }
 
 .modal-content {
-  width: calc(200px + 10vw);
+  width: calc(200px + 10vh);
+  max-height: 650px;
+  overflow-y: auto;
   position: relative;
   padding: 2em;
   border-radius: 10px;
   text-align: center;
   background: linear-gradient(
-    -45deg,
+    171deg,
     rgba(0, 255, 162, 1) 1%,
     rgba(42, 152, 177, 1) 100%
   );
