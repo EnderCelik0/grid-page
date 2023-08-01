@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import png from '../src/assets/folder-icon.png';
 import ModalOverlay from './ModalOverlay';
+import Card from './Card';
 
-function App() {
+export default function App() {
   const [data, setData] = useState();
   const [modelData, setModelData] = useState();
-  const [isOpen, setIsOpen] = useState(false);
   const [wholeData, setWholeData] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
-    fetch('http://localhost:3000/data')
+    fetch('https://jsonserver-uhor.onrender.com/data')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -56,5 +58,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
