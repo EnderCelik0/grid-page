@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import png from '../src/assets/folder-icon.png';
 import ModalOverlay from './ModalOverlay';
-import Card from './Card';
+import { useLockedBody } from 'usehooks-ts';
 
 export default function App() {
   const [data, setData] = useState();
@@ -18,6 +18,8 @@ export default function App() {
         setWholeData(data);
       });
   }, []);
+
+  useLockedBody(isOpen, 'root');
 
   const openAndSetModal = (obj) => {
     setModelData(obj);
@@ -52,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className='App'>
+    <div className={`App ${isOpen ? 'modal-open' : ''}`}>
       {data && <CardList />}
 
       <ModalOverlay
