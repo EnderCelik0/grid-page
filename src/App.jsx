@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className={`App ${isOpen ? 'modal-open' : ''}`}>
+    <div className='App'>
       {data && <CardList />}
 
       <ModalOverlay

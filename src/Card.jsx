@@ -1,13 +1,25 @@
-import { CSSTransition } from 'react-transition-group';
-
+import { AnimatePresence, motion } from 'framer-motion';
 export default function Card({ cardDetailData, isCardOpen }) {
   return (
     <>
-      {isCardOpen && (
-        <CSSTransition>
-          <div className='card'>
+      <AnimatePresence>
+        {isCardOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            animate={{ duration: 3 }}
+            exit={{ opacity: 0 }}
+            className='card'
+          >
             <main className='card-details'>
-              <section className='detail-section'>
+              <hr className='divider'></hr>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ duration: 0.4 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                exit={{ opactiy: 0, scale: 0 }}
+                className='detail-sections'
+              >
                 <h2 className='detail-title'>General</h2>
                 <ul className='detail-list'>
                   <li className='detail'>
@@ -65,9 +77,15 @@ export default function Card({ cardDetailData, isCardOpen }) {
                     </span>
                   </li>
                 </ul>
-              </section>
+              </motion.div>
 
-              <section className='detail-section'>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ duration: 3 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                exit={{ opactiy: 0, scale: 0 }}
+                className='detail-sections'
+              >
                 <h2 className='detail-title'>3D Visualization</h2>
                 <ul className='detail-list'>
                   <li className='detail'>
@@ -77,8 +95,14 @@ export default function Card({ cardDetailData, isCardOpen }) {
                     </span>
                   </li>
                 </ul>
-              </section>
-              <section className='detail-section'>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ duration: 3 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                exit={{ opactiy: 0, scale: 0 }}
+                className='detail-sections'
+              >
                 <h2 className='detail-title'>Annotation Scale</h2>
                 <ul className='detail-list'>
                   <li className='detail'>
@@ -88,9 +112,15 @@ export default function Card({ cardDetailData, isCardOpen }) {
                     </span>
                   </li>
                 </ul>
-              </section>
+              </motion.div>
 
-              <section className='detail-section'>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ duration: 3 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                exit={{ opactiy: 0, scale: 0 }}
+                className='detail-sections'
+              >
                 <h2 className='detail-title'>Geometry</h2>
                 <ul className='detail-list'>
                   <li className='detail'>
@@ -112,10 +142,16 @@ export default function Card({ cardDetailData, isCardOpen }) {
                     </span>
                   </li>
                 </ul>
-              </section>
+              </motion.div>
 
               {cardDetailData.properties.Attributes && (
-                <section className='detail-section'>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ duration: 3 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  exit={{ opactiy: 0, scale: 0 }}
+                  className='detail-sections'
+                >
                   <h2 className='detail-title'>Attributes</h2>
                   <ul className='detail-list'>
                     <li className='detail'>
@@ -167,10 +203,16 @@ export default function Card({ cardDetailData, isCardOpen }) {
                       </span>
                     </li>
                   </ul>
-                </section>
+                </motion.div>
               )}
 
-              <section className='detail-section'>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ duration: 3 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                exit={{ opactiy: 0, scale: 0 }}
+                className='detail-sections'
+              >
                 <h2 className='detail-title'>Rotation</h2>
                 <ul className='detail-list'>
                   <li className='detail'>
@@ -192,11 +234,11 @@ export default function Card({ cardDetailData, isCardOpen }) {
                     </span>
                   </li>
                 </ul>
-              </section>
+              </motion.div>
             </main>
-          </div>
-        </CSSTransition>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
